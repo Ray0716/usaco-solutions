@@ -42,7 +42,7 @@ for cow in cowGrid:
 
 
 cowGrid = [[int(coord.strip()) for coord in cow] for cow in cowGrid]
-print(cowGrid)
+#print(cowGrid)
 
 cowTestingGrid = []
 
