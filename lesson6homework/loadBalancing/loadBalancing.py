@@ -67,12 +67,6 @@ for cow in farm:
         if cow[1] < verticalDiv: # if on lower of left
             q3 += 1
 
-print(horizontalDiv)
-print(verticalDiv)
-print(q1)
-print(q2)
-print(q3)
-print(q4)
 
 with open('balancing.out', 'w') as outfile:
     outfile.write(str(max(q1, q2, q3, q4)))
