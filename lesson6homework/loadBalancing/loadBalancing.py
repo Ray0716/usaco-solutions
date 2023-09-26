@@ -17,6 +17,8 @@ def divide(cows): # cows is list of one coordinates, returns the divide for the 
     min_key = None
     min_value = float('inf')  # Initialize min_value with positive infinity
 
+    print(differences)
+
     for key, value in differences.items():
         if value < min_value:
             min_key = key
@@ -30,7 +32,7 @@ def divide(cows): # cows is list of one coordinates, returns the divide for the 
 
 
 
-with open('balancing.in', 'r') as infile:
+with open('/Users/Ray/Downloads/balancing_bronze_feb16/2.in', 'r') as infile:
     lines = infile.readlines()
     for line in lines:
         cow = line.split(' ')
@@ -50,6 +52,9 @@ yCoords = sorted([cow[1] for cow in farm])
 horizontalDiv = divide(xCoords) # the libne is vert
 verticalDiv = divide(yCoords) # the line is horiz
 
+print(horizontalDiv)
+print(verticalDiv)
+
 q1 = 0
 q2 = 0
 q3 = 0
@@ -68,7 +73,7 @@ for cow in farm:
             q3 += 1
 
 
-with open('balancing.out', 'w') as outfile:
+with open('/Users/Ray/compSci/usaco/lesson6homework/loadBalancing/balancing.out', 'w') as outfile:
     outfile.write(str(max(q1, q2, q3, q4)))
 
 
