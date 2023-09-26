@@ -1,6 +1,25 @@
-# USACO Practice
+# USACO Solutions
+
+![GitHub repo size](https://img.shields.io/github/repo-size/Ray0716/usaco-solutions?style=for-the-badge&logo=github&logoColor=white&color=teal)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/Ray0716/usaco-solutions?style=for-the-badge&logo=git&logoColor=white&color=orange)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Ray0716/usaco-solutions/master?style=for-the-badge&logo=commit&logoColor=white)
+![GitHub top language](https://img.shields.io/github/languages/top/Ray0716/usaco-solutions?style=for-the-badge&logo=python&logoColor=white)
+![GitHub contributors](https://img.shields.io/github/contributors/Ray0716/usaco-solutions?style=for-the-badge&color=red)
+![GitHub Repo stars](https://img.shields.io/github/stars/Ray0716/usaco-solutions?style=for-the-badge)
+
 
 I use this repo to store my solutions to USACO practice problems 
 please understand that i'm a horrible developer that has no regards to best practices whatsoever so the code quality will be not the best
 
-also there's 5 sets of homeworks missing so most of it is empty folders
+also there's 5 sets of homeworks missing so most of it's empty folders  ;-;
+
+
+
+
+## Technologies Used
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=py,vscode,stackoverflow,git,github,md," />
+  </a>
+</p>
