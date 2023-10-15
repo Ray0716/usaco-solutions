@@ -8,7 +8,7 @@ maxB = bucketCapacities[1]
 maxC = bucketCapacities[2]
 
 print(f"a: {maxA}, b:{maxB}, c:{maxC}")
-
+ 
 global states
 states = []
 
