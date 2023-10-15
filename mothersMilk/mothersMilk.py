@@ -11,6 +11,10 @@ maxC = bucketCapacities[2]
 global states
 states = []
 
+global access
+access = [[[0 for _ in range(maxC+1)] for _ in range(maxB+1)] for _ in range(maxA+1)]
+
+
 class state: # single state of a bucket config (ex, 0 0 10)
     def __init__(self, a, b, c):
         self.a = a
@@ -34,81 +38,123 @@ def edge(a, b, c, fromBucket, toBucket):
     elif c == 0 and fromBucket == "c":
         return
         #states.append(state(a, b, c))
+
+
     elif fromBucket == "a" and toBucket == "b":
-        if (state(0, (a+b), c) in states) or (state(((a+b)-maxB), maxB, c) in states):
-            pass
-        elif (a+b) <= maxB:
-            states.append(state(0, (a+b), c))
-            print("appended somethign to states")
+        if a+b <= maxB:
+            if access[0][a+b][c] != 1:
+                states.append(state(0, a+b, c))
+                access[0][a+b][c] = 1
         else:
-            states.append(state(((a+b)-maxB), maxB, c))
-            print("appended somethign to states")
+            if access[(a+b)-maxB][maxB][c] != 1:
+                states.append(state(((a+b)-maxB), maxB, c))
+                access[(a+b)-maxB][maxB][c] = 1
+
+    
+
     elif fromBucket == "a" and toBucket == "c":
-        if (state(0, b, (a+c)) in states) or (state(((a+c)-maxC), b, maxC) in states):
-            pass
-        elif (a+c) <= maxC:
-            states.append(state(0, b, (a+c)))
-            print("appended somethign to states")
+        if a+c <= maxC:
+            if access[0][b][a+c] != 1:
+                states.append(state(0, b, a+c))
+                access[0][b][a+c] = 1
         else:
-            states.append(state(((a+c)-maxC), b, maxC))
-            print("appended somethign to states")
+            if access[(a+c)-maxC][b][maxC] != 1:
+                states.append(state(((a+c)-maxC), b, maxC))
+                access[(a+c)-maxC][b][maxC] = 1
+
+
 
     elif fromBucket == "b" and toBucket == "a":
-        if (state((a+b), 0, c) in states) or (state(maxA, ((a+b)-maxB), c) in states):
-            pass
-        elif (a+b) <= maxA:
-            states.append(state((a+b), 0, c))
-            print("appended somethign to states")
+        if b+a <= maxB:
+            try:
+                if access[a+b][0][c] != 1:
+                    states.append(state(a+b, 0, c))
+                    access[a+b][0][c] = 1
+            except:
+                pass
         else:
-            states.append(state(maxA, ((a+b)-maxB), c))
-            print("appended somethign to states")
+            if access[maxA][(a+b)-maxA][c] != 1:
+                states.append(state(maxA, ((a+b)-maxA), c))
+                access[maxA][(a+b)-maxA][c] = 1
+
+
+
     elif fromBucket == "b" and toBucket == "c":
-        if (state(a, 0, (b+c)) in states) or (state(a, ((b+c)-maxC), maxC) in states):
-            pass
-        elif (b+c) <= maxC:
-            states.append(state(a, 0, (b+c)))
-            print("appended somethign to states")
+        if b+c <= maxC:
+            if access[a][0][b+c] != 1:
+                states.append(state(a, 0, b+c))
+                access[a][0][b+c] = 1
         else:
-            states.append(state(a, ((b+c)-maxC), maxC))
-            print("appended somethign to states")
+            if access[a][(b+c)-maxC][maxC] != 1:
+                states.append(state(a, ((b+c)-maxC), maxC))
+                access[a][(b+c)-maxC][maxC] = 1
+
+
 
     elif fromBucket == "c" and toBucket == "a":
-        if (state((a+c), b, 0) in states) or (state(maxA, b, ((a+c)-maxC)) in states):
-            pass
-        elif (a+c) <= maxA:
-            states.append(state((a+c), b, 0))
-            print("appended somethign to states")
+        if c+a <= maxA:
+            if access[c+a][b][0] != 1:
+                states.append(state((c+a), b, 0))
+                access[c+a][b][0] = 1
         else:
-            states.append(state(maxA, b, ((a+c)-maxC)))
-            print("appended somethign to states")
+            if access[maxA][b][(a+c)-maxA] != 1:
+                states.append(state(maxA, b, (a+c)-maxA))
+                access[maxA][b][(a+c)-maxA] = 1
+
+
+
     elif fromBucket == "c" and toBucket == "b":
-        if (state(a, (b+c), 0) in states) or (state(a, maxB, ((b+c)-maxB)) in states):
-            pass
-        elif (b+c) <= maxB:
-            states.append(state(a, (b+c), 0))
-            print("appended somethign to states")
+        if c+b <= maxB:
+            if access[a][b+c][0] != 1:
+                states.append(state(a, (b+c), 0))
+                access[a][b+c][0] = 1
         else:
-            states.append(state(a, maxB, ((b+c)-maxB)))
-            print("appended somethign to states")
+            if access[a][maxB][(b+c)-maxB] != 1:
+                states.append(state(a, maxB, (b+c)-maxB))
+                access[a][maxB][(b+c)-maxB] = 1
 
 buckets = ["a", "b", "c"]
 
+#print(len(access))
+
+states.append(state(0, 0, maxC))
+
+while len(states) != 0:
+    node = states[0]
+    states.remove(states[0])
+
+    for f in range(0,3):
+        for t in range(0,3):
+            if f != t:
+                edge(node.a, node.b, node.c, buckets[f], buckets[t])
+                #print(f"a: {node.a}, b:{node.b}, c:{node.c}, f:{buckets[f]}, t:{buckets[t]}")
 
 
-firstState = state(0, 0, int(maxC))
-states.append(firstState)
+results = []
 
-while True:
-    thisStates = states
-    for state in states:
+for i in range(0,maxB+1):
+    for j in range(0,maxC+1):
+        if access[0][i][j] == 1:
+            results.append(j)
+
+results.sort()
+
+print(results)
+    
+
+
+
+
+'''
+for c in range(20**3):
+    for x in states:
         for f in range(0, 3):
             for t in range(0, 3):
                 if f != t:
-                    edge(state.a, state.b, state.c, str(buckets[f]), str(buckets[t]))
-                    print(f"{state.a}, {state.b}, {state.c}, {buckets[f]}, {buckets[t]}")
-    if thisStates == states:
-        break
+                    edge(x.a, x.b, x.c, str(buckets[f]), str(buckets[t]))
+                    print(f"{x.a}, {x.b}, {x.c}, {buckets[f]}, {buckets[t]}")
 
+'''
 
 '''
 for a in range(maxA+1):
@@ -121,8 +167,8 @@ for a in range(maxA+1):
                             edge(a, b, c, str(buckets[f]), str(buckets[t]))
                             print(f"{a}, {b}, {c}, {buckets[f]}, {buckets[t]}")
 
-'''
 
+'''
 '''
 edge(8, 0, 2, "a", "c")
 
@@ -132,5 +178,3 @@ print(states[0].b)
 print(states[0].c)
 
 '''
-for state in states:
-    print(f"a:{state.a}, b:{state.b}, c:{state.c}")
