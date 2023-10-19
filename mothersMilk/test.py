@@ -1,14 +1,14 @@
-class state: # single state of a bucket config (ex, 0 0 10)
-    def __init__(self, a, b, c):
-        self.a = a
-        self.b = b
-        self.c = c
+"""
+ID: raytang1
+LANG: PYTHON3
+TASK: test
+"""
 
+with open('test.in', 'r') as infile:
+    nums = infile.readline()
+    nums = nums.split(" ")
+    nums = [int(x) for x in nums]
 
-test = []
-test.append(state(0, 0, 0))
-
-t = test[0]
-
-
-print(t.a)
+with open('test.out', 'w') as outfile:
+    outfile.writelines(str(nums[0] + nums[1]))
+    outfile.writelines("\n")
