@@ -7,6 +7,7 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/Ray0716/usaco-solutions?style=for-the-badge&color=red)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Ray0716/usaco-solutions?style=for-the-badge)
 
+![](http://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Ray0716&theme=transparent&utcOffset=8)
 
 * i use this repo to store my solutions to USACO practice problems
 * * stemivy folder is from a previous class i took, the other folders are just other problems from the class i take now and random problems i decide to do
