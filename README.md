@@ -8,11 +8,12 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/Ray0716/usaco-solutions?style=for-the-badge)
 
 
-* I use this repo to store my solutions to USACO practice problems 
-* please understand that i'm a horrible developer that has no regards to best practices whatsoever so the code quality will be not the best
-* these are the easiest of easy bronze problems because im stupid
+* i use this repo to store my solutions to USACO practice problems
+* * stemivy folder is from a previous class i took, the other folders are just other problems from the class i take now and random problems i decide to do
+* please understand i'm still a student learning this shit so the code's gonna be shitty
 
-also there's 5 sets of homeworks missing so most of it's empty folders  ;-;
+
+
 
 
 
