@@ -23,8 +23,8 @@ def canReach(start, end, graph): # checks if you can reach a node from anotehr n
         queue.pop(0)
         if current == end:
             return True
-        for endNode in range(len(graph[0])):
-            if graph[current][endNode] > 0 and states[endNode] != 1:
+        for endNode in range(len(graph)):
+            if finalPath[current][endNode] > 0 and states[endNode] != 1:
                 queue.append(endNode)
                 states[endNode] = 1
     return False
@@ -50,16 +50,18 @@ for row in graph:
 # n is # of nodes
 print(f"n = {n}")
 
+
 pathWeightList = []
+pathWeightList.append(node(1, 3, 3))
 pathWeightList.append(node(1, 5, 5))
 pathWeightList.append(node(0, 4, 7))
+pathWeightList.append(node(3, 5, 8))
 pathWeightList.append(node(1, 2, 10))
 pathWeightList.append(node(2, 5, 11))
 pathWeightList.append(node(0, 1, 12))
 pathWeightList.append(node(4, 5, 16))
 pathWeightList.append(node(0, 2, 18))
 pathWeightList.append(node(2, 4, 21))
-# this list has node objects with start, end & weight
 
 '''
 for row in range(len(graph)):
@@ -71,8 +73,8 @@ for row in range(len(graph)):
 pathWeightList.sort(key=lambda x: x.weight)
 '''
 
-
-finalPath = [0 for _ in range(len(graph)) for _ in range(len(graph[0]))]
+global finalPath
+finalPath = [[0 for _ in range(len(graph))] for _ in range(len(graph[0]))]
 
 for node in pathWeightList:
     if not canReach(node.row, node.col, graph):
@@ -80,8 +82,8 @@ for node in pathWeightList:
         finalPath[node.row][node.col] = node.weight
         finalPath[node.col][node.row] = node.weight
 
-print(finalPath)
-
+for x in finalPath:
+    print(x)
 
 
 '''
