@@ -1,6 +1,6 @@
-necklace = [0,1,2,3,4,5,6,7,8,9,10]
+necklace = ['r','r','r']
 
-index = 4
+index = -1
 
 substring1 = necklace[0:index] # string of broken necklacegoing backwards
 substring2 = necklace[index:len(necklace)] # string going fowards
@@ -20,6 +20,14 @@ for x in necklace[0:index]:
 
 
 
-
 print(substring1)
 print(substring2)
+
+e = ['a','b','c','d','e','f']
+print(e[::-1])
+
+try:
+    print(e[100])
+except IndexError:
+    pass
+print("awgjkluserf")

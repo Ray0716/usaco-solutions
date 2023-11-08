@@ -1,4 +1,15 @@
-with open('brokenBeads/beads.in', 'r') as infile:
+"""
+ID: raytang
+LANG: PYTHON3
+TASK: beads
+"""
+infname = "brokenBeads/beads.in"
+outfname = "brokenBeads/beads.out"
+
+def isAllEqual(list):
+    return all(i == list[0] for i in list)
+
+with open(infname, 'r') as infile:
     lines = infile.readlines()
     numBeads = (lines[0]).strip()
     necklace = lines[1]
@@ -6,6 +17,8 @@ with open('brokenBeads/beads.in', 'r') as infile:
 necklace = [*necklace]
 
 collectedList = []
+
+
 
 for index in range(0, len(necklace)):
     bcolor = necklace[index-1]
@@ -30,37 +43,52 @@ for index in range(0, len(necklace)):
 
     rev2 = substring2
 
-
     for x in rev2[::-1]:
-        substring1.append(x)
+        substring1.append(x)        
 
-    for x in necklace[0:index]:
-        substring2.append(x)
-
-    substring1.remove("\n")
-    substring2.remove("\n")
-    print(f"index: {index}, leftStr: {substring1}, rightStr: {substring2}")
-
-
-
-    while (substring1[count] == bcolor) or (substring1[count] == "w"): # checking backwards
-        collectedBeads += 1
-        count += 1
-        print(f"collected a {bcolor} bead")
-    count = 0
-
-    while (substring2[count] == fcolor) or (substring2[count] == "w"): # checking fwds
-        collectedBeads += 1
-        count += 1
-        print(f"collected a {bcolor} bead")
-
-    collectedList.append(collectedBeads)
-
+    for y in necklace[0:index]:
+        substring2.append(y)
     
 
 
-with open('brokenBeads/beads.out', 'w') as outfile:
-    outfile.write(str(max(collectedList) + 0))
+    try:
+        substring1.remove("\n")
+        substring2.remove("\n")
+    except:
+        pass
+    #print(f"index: {index}, leftStr: {substring1}, rightStr: {substring2}")
 
-print(collectedList)
-print(max(collectedList) + 0)
+
+    try:
+        while (substring1[count] == bcolor) or (substring1[count] == "w"): # checking backwards
+            collectedBeads += 1
+            count += 1
+            #print(f"collected a {bcolor} bead")
+        count = 0
+    except:
+        pass
+
+    try:
+        while (substring2[count] == fcolor) or (substring2[count] == "w"): # checking fwds
+            collectedBeads += 1
+            count += 1
+            #print(f"collected a {bcolor} bead")
+    except:
+        pass
+
+    collectedList.append(collectedBeads)
+
+if collectedList == []:
+    collectedList.append(0)
+
+if isAllEqual(necklace) == False:  
+    with open(outfname, 'w') as outfile:
+        outfile.write(str(max(collectedList) + 0))
+        outfile.write("\n")
+elif isAllEqual(necklace) == True:
+    with open(outfname, 'w') as outfile:
+        outfile.write(str(len(necklace) + 0))
+        outfile.write("\n")
+
+#print(collectedList)
+#print(max(collectedList) + 0)
