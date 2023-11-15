@@ -3,8 +3,8 @@ ID: raytang
 LANG: PYTHON3
 TASK: beads
 """
-infname = "brokenBeads/beads.in"
-outfname = "brokenBeads/beads.out"
+infname = "beads.in"
+outfname = "beads.out"
 
 def isAllEqual(list):
     return all(i == list[0] for i in list)
@@ -13,6 +13,13 @@ with open(infname, 'r') as infile:
     lines = infile.readlines()
     numBeads = (lines[0]).strip()
     necklace = lines[1]
+
+if isAllEqual(necklace) == True:
+    with open(outfname, 'w') as outfile:
+        outfile.write(str(len(necklace) + 0))
+        outfile.write("\n")
+    exit()
+
 
 necklace = [*necklace]
 
@@ -25,10 +32,14 @@ for index in range(0, len(necklace)):
     fcolor = necklace[index]
 
     # if color is white
-    if bcolor == "w":
-        bcolor = necklace[index-2]
-    if fcolor == "w":
-        fcolor = necklace[index+1]
+    whiteCountBack = 0
+    whiteCountFwd = 0
+    while bcolor == "w":
+        bcolor = necklace[index-(whiteCountBack + 2)]
+        whiteCountBack += 1
+    while fcolor == "w":
+        fcolor = necklace[index+(whiteCountFwd + 1)]
+        whiteCountFwd += 1
 
     count = 0
 
@@ -73,6 +84,7 @@ for index in range(0, len(necklace)):
             collectedBeads += 1
             count += 1
             #print(f"collected a {bcolor} bead")
+        count = 0
     except:
         pass
 
@@ -85,10 +97,5 @@ if isAllEqual(necklace) == False:
     with open(outfname, 'w') as outfile:
         outfile.write(str(max(collectedList) + 0))
         outfile.write("\n")
-elif isAllEqual(necklace) == True:
-    with open(outfname, 'w') as outfile:
-        outfile.write(str(len(necklace) + 0))
-        outfile.write("\n")
 
-#print(collectedList)
 #print(max(collectedList) + 0)
