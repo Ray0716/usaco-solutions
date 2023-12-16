@@ -12,7 +12,7 @@ def pour(cap1, am1, cap2, am2):
 n = int(input())
 b = []
 
-for x in range(n):
+for x in range(3):
     b.append([int(x) for x in input().split()])
 
     
