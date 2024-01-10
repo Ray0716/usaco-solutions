@@ -9,7 +9,7 @@ def flip(array, row, col):
 
     return array
 
-with open('cowtip/cowtip.in', 'r') as inFile:
+with open('cowtip.in', 'r') as inFile:
     n = int(inFile.readline())
     data = []
     for x in range(n):
@@ -32,4 +32,4 @@ for row in range(len(data)-1, -1, -1):
 
 
 with open('cowtip.out', 'w') as outFile:
-    
+    outFile.write(str(flips))
