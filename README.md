@@ -11,7 +11,7 @@
 
 * i use this repo to store my solutions to USACO practice problems
 * * stemivy folder is from a previous class i took, the other folders are just other problems from the class i take now and random problems i decide to do
-* please understand i'm still a student learning this shit so the code's gonna be shitty
+* code's shitty because i hate farmer john
 
 
 
